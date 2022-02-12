@@ -1,7 +1,7 @@
 using Pkg
 Pkg.activate(".")
 using BCACrypt
-
+using Random
 
 
 # Block cellular automaton
