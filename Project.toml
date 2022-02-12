@@ -1,3 +1,7 @@
+name = "BCACrypt"
+uuid = "dad708b7-ec9a-5a27-b06b-768a0e717d81"
+version = "0.0.1"
+
 [deps]
 Chain = "8be319e6-bccf-4806-a6f7-6fae938471bc"
 ColorSchemes = "35d6a980-a343-548e-a6ea-1d62b119f2f4"
