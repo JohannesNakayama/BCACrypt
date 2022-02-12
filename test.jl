@@ -1,8 +1,13 @@
 test_string = "halo i bims 1 idiot lol"
 char_rep = collect(test_string)
 int_rep = Int8.(char_rep)
-bit_string_rep = bitstring.(int_rep)
+bit_rep = bitstring.(int_rep)
 
+m = [[parse(Bool, i) for i in row] for row in bit_rep]
+
+if mod(length(m), 2) != 0
+    pushfirst!(m, zeros(Bool, length(m[1])))
+end
 
 # MARGOLUS NEIGHBORHOOD SCHEME
 
@@ -10,25 +15,25 @@ function start_at(t)
     return mod(t, 2) == 0 ? (1, 1) : (2, 2)
 end
 
-m = [[parse(Bool, i) for i in row] for row in bit_rep]
-t = 2
+t = 1
 start = start_at(t)
 
 i = 1
 
-m
-for j in start[2]:2:length(m[1])
-    margolus = [
-        [
-            m[i][j <= length(m[1]) ? j : 1],
-            m[i][j+1 <= length(m[1]) ? j+1 : 1]
-        ],
-        [
-            m[i+1][j <= length(m[1]) ? j : 1],
-            m[i+1][j+1 <= length(m[1]) ? j+1 : 1]
+for i in start[1]:2:length(m)
+    for j in start[2]:2:length(m[1])
+        margolus = [
+            [
+                m[i][j],
+                m[i][j+1 <= length(m[1]) ? j+1 : 1]
+            ],
+            [
+                m[i+1 <= length(m) ? i+1 : 1][j],
+                m[i+1 <= length(m) ? i+1 : 1][j+1 <= length(m[1]) ? j+1 : 1]
+            ]
         ]
-    ]
-    println(margolus)
+        println(margolus)
+    end
 end
 
 
