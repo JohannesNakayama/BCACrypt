@@ -37,17 +37,11 @@ for i in start[1]:2:length(m)
 end
 
 
-# for i in start[1]:nrows(mat)
-#   for j in start[2]:8  # if 8-bit strings are used
-#     # Margolus neighborhood given by:
-#     mat[i,   j  ], mat[i  , j+1]
-#     mat[i+1, j  ], mat[i+1, j+1]
-#       --> broadcast -> mod 8
-#     -> apply rule
-#     # end of row flips over to beginning if start = [2, 2] (modulo)
-#   end
-#   # end of mat flips over to beginning if start = [2, 2](modulo)
-# end
+# TODO
+#
+# * [ ] implement Critters rule
+# * [ ] implement Tron rule
+# * [ ] encode / decode
 
 
 
