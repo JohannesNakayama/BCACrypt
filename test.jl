@@ -139,8 +139,8 @@ end
 rule_seq = [parse(Bool, i) for i in bitstring(Random.rand(UInt32))]
 step_seq = Random.rand(0:127, 32)
 secretkey = SecretKey(rule_seq, step_seq)
-ct = "halo i bims 1 idiot lol"
-ciphertext = encrypt(ct, secretkey)
+cleartext = "halo i bims 1 idiot lol"
+ciphertext = encrypt(cleartext, secretkey)
 
 
 # Example of Automaton: random
