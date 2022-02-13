@@ -6,7 +6,11 @@
 
 * [x] Encryption / decryption works
 * [x] Quick'n'dirty animations for the terminal
-* [ ] Encoding work, decoding is wonky
+* [x] Encoding works (decoding is wonky)
+* [ ] Fix decoding
+* [ ] Refactor automaton (should be possible to make more performant)
+* [ ] Look into other reversible rules
+* [ ] Is there something like Wolfram codes for BCAs?
 
 ## How to run
 

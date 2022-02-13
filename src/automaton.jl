@@ -23,7 +23,7 @@ function run!(automaton::Automaton, steps::Int, rule::Function)
                 next_state = rule(curr_state, next_state, block, pos1, pos2, pos3, pos4)
             end
         end
-        push!(automaton.states, (copy(start), deepcopy(next_state)))
+        push!(automaton.states, (copy(start), copy(next_state)))
     end
     return automaton
 end

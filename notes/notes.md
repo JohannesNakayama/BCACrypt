@@ -5,8 +5,8 @@
 
 ## TODO
 
-* [ ] implement Tron rule
-* [ ] encode / decode
+* [x] implement Tron rule
+* [x] encode / decode
 
 
 
