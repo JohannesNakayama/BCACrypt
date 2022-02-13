@@ -18,10 +18,10 @@ animate(automaton, 30)
 rule_seq = [parse(Bool, i) for i in bitstring(Random.rand(UInt32))]
 step_seq = Random.rand(0:127, 32)
 secretkey = SecretKey(rule_seq, step_seq)
-cleartext = "halo i bims 1 idiot lol"
+plaintext = "halo i bims 1 idiot lol"
 Base.run(`clear`)
 sleep(1)
-ciphertext = encrypt(cleartext, secretkey)
+ciphertext = encrypt(plaintext, secretkey)
 println(decode(ciphertext[2]))
 deciphered = decrypt(ciphertext, secretkey)
 println(decode(deciphered[2]))
