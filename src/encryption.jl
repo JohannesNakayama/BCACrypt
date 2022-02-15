@@ -3,18 +3,18 @@ mutable struct SecretKey
     step_seq
 end
 
-SecretKey() = SecretKey(Random.rand(Bool, 32), Random.rand(0:127, 32))
+SecretKey(; scrambles = 256) = SecretKey(Random.rand(Bool, scrambles), Random.rand(1:2, scrambles))
 
 function encode(text::String)
     mat = @chain begin
         collect(text)
-        Int8.(_)
+        Int16.(_)
         bitstring.(_)
         [[parse(Bool, i) for i in row] for row in _]
-        if mod(length(_), 2) != 0
-            pushfirst!(_, zeros(Bool, length(_[1])))
-        end
         Matrix(hcat(_...)')
+    end
+    if mod(size(mat, 1), 2) != 0
+        mat = vcat(zeros(Bool, size(mat,2))', mat)
     end
     return mat
 end
@@ -24,10 +24,10 @@ function decode(encoded_text::Matrix)
     for i in 1:size(encoded_text)[1]
         decoded_char = @chain begin
             encoded_text[i, 1:end]
-            Int8.(_)
+            Int16.(_)
             string.(_)
             reduce(*, _)
-            parse(Int16, _, base = 2)
+            parse(Int32, _, base = 2)
             Char(_)
         end
         push!(chars, decoded_char)
