@@ -10,7 +10,7 @@ function run!(automaton::Automaton, steps::Int, rule::Function)
         curr_state = deepcopy(automaton.states[end][2])
         start = automaton.states[end][1] == 1 ? 2 : 1
         next_state = zeros(Bool, size(curr_state))
-        for i in start:2:size(curr_state)[1]
+        Threads.@threads for i in start:2:size(curr_state)[1]
             for j in start:2:size(curr_state)[2]
                 pos1 = [i, j]
                 pos2 = [i, j+1 <= size(curr_state)[2] ? j+1 : 1]
