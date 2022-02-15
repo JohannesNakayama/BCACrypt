@@ -13,6 +13,13 @@ run!(automaton, 100, critters)
 animate(automaton, 30)
 
 
+# Nice critters run
+m = zeros(Bool, 50, 50)
+m[23:27, 23:27] = Random.rand(Bool, 5, 5)
+automaton = Automaton(m, 1)
+run!(automaton, 100, critters)
+animate(automaton, 50)
+
 
 # Encryption / decryption
 rule_seq = [parse(Bool, i) for i in bitstring(Random.rand(UInt32))]
@@ -25,5 +32,8 @@ ciphertext = encrypt(plaintext, secretkey)
 println(decode(ciphertext[2]))
 deciphered = decrypt(ciphertext, secretkey)
 println(decode(deciphered[2]))
+
+
+
 
 
