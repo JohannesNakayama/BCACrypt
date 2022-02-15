@@ -1,15 +1,10 @@
 # NOTES
 
-
-
-
 ## TODO
 
 * [x] implement Tron rule
 * [x] encode / decode
-
-
-
+* [ ] performance improvement
 
 ## BLOCK CELLULAR AUTOMATA COMPONENTS (WIKIPEDIA)
 

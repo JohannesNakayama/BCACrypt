@@ -3,7 +3,7 @@ mutable struct SecretKey
     step_seq
 end
 
-SecretKey(; scrambles = 256) = SecretKey(Random.rand(Bool, scrambles), Random.rand(1:2, scrambles))
+SecretKey(; scrambles = 256) = SecretKey(Random.rand(Bool, scrambles), Random.rand(Bool, scrambles))
 
 function encode(text::String)
     mat = @chain begin
@@ -41,9 +41,9 @@ function encrypt(cleartext::String, secretkey::SecretKey)
     automaton = Automaton(mat, 1)
     for (rule, n_steps) in zip(secretkey.rule_seq, secretkey.step_seq)
         if rule
-            run!(automaton, n_steps, critters)
+            run!(automaton, n_steps + 1, critters)
         else
-            run!(automaton, n_steps, tron)
+            run!(automaton, n_steps + 1, tron)
         end
     end
     return automaton.states[end]
@@ -54,9 +54,9 @@ function decrypt(ciphertext::Any, secretkey::SecretKey)
     automaton = Automaton(ciphertext[2], ciphertext[1] == 1 ? 2 : 1)
     for (rule, n_steps) in zip(reverse(secretkey.rule_seq), reverse(secretkey.step_seq))
         if rule
-            run!(automaton, n_steps, reverse_critters)
+            run!(automaton, n_steps + 1, reverse_critters)
         else
-            run!(automaton, n_steps, tron)
+            run!(automaton, n_steps + 1, tron)
         end
     end
     return automaton.states[end]
