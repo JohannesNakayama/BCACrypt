@@ -22,9 +22,7 @@ using Random
 
 
 # Encryption / decryption
-rule_seq = [parse(Bool, i) for i in bitstring(Random.rand(UInt32))]
-step_seq = Random.rand(0:127, 32)
-secretkey = SecretKey(rule_seq, step_seq)
+secretkey = SecretKey()
 plaintext = open(f -> read(f, String), "example.txt")
 println("Encryption...")
 @time ciphertext = encrypt(plaintext, secretkey)
