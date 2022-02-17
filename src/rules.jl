@@ -64,4 +64,3 @@ function tron(
     end
     return next_state
 end
-
