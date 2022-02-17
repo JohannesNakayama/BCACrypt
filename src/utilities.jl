@@ -1,7 +1,7 @@
-function animate(automaton::Automaton, width::Int=20, colormap = [(0, 0, 0), (255, 255, 255)])
+function animate(automaton::Automaton)
     for (i, frame) in automaton.states
         Base.run(`clear`)
-        print(heatmap(frame, colorbar = false, colormap = colormap, width = width))
+        imshow(Gray{N0f8}.(Int.(frame)))
         sleep(0.1)
     end
 end

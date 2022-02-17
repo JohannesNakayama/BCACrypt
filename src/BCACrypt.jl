@@ -1,9 +1,12 @@
 module BCACrypt
 
-using UnicodePlots
+# using UnicodePlots
 using ColorSchemes
 using Random
 using Chain
+using Images
+using Sixel
+using ImageInTerminal
 
 export Automaton
 export SecretKey
@@ -21,6 +24,5 @@ include("automaton.jl")
 include("rules.jl")
 include("utilities.jl")
 include("encryption.jl")
-
 
 end  # end module
