@@ -1,5 +1,6 @@
 using Pkg
 Pkg.activate(".")
+
 using BCACrypt
 using Random
 
@@ -22,12 +23,22 @@ using Random
 
 
 # Encryption / decryption
-secretkey = SecretKey()
-plaintext = open(f -> read(f, String), "example.txt")
-println("Encryption...")
-@time ciphertext = encrypt(plaintext, secretkey)
-println("Decryption...")
-@time deciphered = decrypt(ciphertext, secretkey)
+# secretkey = SecretKey()
+# plaintext = open(f -> read(f, String), "example.txt")
+# println("Encryption...")
+# @time ciphertext = encrypt(plaintext, secretkey)
+# println("Decryption...")
+# @time deciphered = decrypt(ciphertext, secretkey)
+
+
+# Fancy run with all rules
+mat = zeros(Bool, 50, 50)
+mat[36:45, 36:45] = Random.rand(Bool, 10, 10)
+automaton = Automaton(mat, 1)
+run!(automaton, 200, critters)
+run!(automaton, 200, tron)
+run!(automaton, 200, reverse_critters)
+animate(automaton, 0.08)
 
 
 

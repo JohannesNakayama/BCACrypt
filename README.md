@@ -2,6 +2,24 @@
 
 *A symmetric encryption scheme using reversible cellular automata.*
 
+
+
+## How to run
+
+*Block cellular automata with animations*:
+
+```julia
+using BCACrypt
+using Random
+
+mat = zeros(Bool, 50, 50)
+mat[21:25, 21:25] = Random.rand(Bool, 5, 5)
+
+automaton = Automaton(mat, 1)
+run!(automaton, 200, tron)
+animate(automaton)
+```
+
 ## Status
 
 * [x] Encryption / decryption works
@@ -11,10 +29,4 @@
 * [ ] Refactor automaton (should be possible to make more performant)
 * [ ] Look into other reversible rules
 * [ ] Is there something like Wolfram codes for BCAs?
-
-## How to run
-
-* see `test.jl`
-* `julia test.jl` -> runs the `critters` BCA on a random `(30, 30)` matrix (with animation) and demonstrates encryption/decryption
-* decoding doesn't work properly yet, so demo is not yet ideal
 
